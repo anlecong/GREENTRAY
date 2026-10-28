@@ -19,27 +19,27 @@ Hai tai khoan tren chi danh cho ban chay cuc bo. Khong dung mat khau demo khi du
 
 ## Chuan bi trien khai Internet tren Render
 
-Tep `render.yaml` cau hinh web service Python, HTTPS cua Render va SQLite tren persistent disk tai `/var/data/greentray.db`. Persistent disk va goi web service `starter` la tinh nang co phi; hay xem gia hien tai trong Render truoc khi tao dich vu. Cau hinh chi dung mot instance vi SQLite khong phu hop de chia se giua nhieu instance.
+Tep `render.yaml` cau hinh web service Python mien phi tren Render va SQLite tam tai `/tmp/greentray.db`. Ban mien phi khong co persistent disk: Render co the cho dich vu ngu sau 15 phut khong co truy cap, va moi du lieu SQLite se mat khi dich vu ngu, khoi dong lai hoac deploy lai. Chi dung ban nay de thu nghiem, khong dung de luu giao dich/du lieu that.
 
-1. Dua ma nguon len mot GitHub repository rieng tu cua ban.
-2. Dam bao khong dua file `greentray.db` len repository; `.gitignore` da loai tru file nay. Trong Render, tao Blueprint tu repository va xem ky goi dich vu/disk truoc khi xac nhan.
+1. Dam bao khong dua file `greentray.db` len repository; `.gitignore` da loai tru file nay.
+2. Trong Render, tao Blueprint tu repository. Cau hinh mien phi khong can disk va co the mat toan bo du lieu SQLite khi dich vu ngu, khoi dong lai hoac deploy lai.
 3. Khi duoc yeu cau, nhap `ADMIN_INITIAL_PASSWORD` dai it nhat 12 ky tu; day la mat khau rieng, khong luu trong ma nguon. Email admin mac dinh la `admin@greentray.local` va co the doi bang env var `ADMIN_EMAIL`.
 4. Sau khi deploy thanh cong, dung URL `https://...onrender.com`. Dang nhap `/admin`; nut **QR trang khach** se tao QR theo URL HTTPS cong khai. QR admin la URL do them `/admin`.
 
-Lan deploy cloud dau tien tao co so du lieu moi voi 60 mon kho; file `greentray.db` tren may tinh khong tu dong duoc tai len cloud. Khong chuyen du lieu cu len hosting neu chua chu dong sao luu va xac nhan can chuyen.
+Lan deploy cloud dau tien tao co so du lieu moi voi 60 mon kho; file `greentray.db` tren may tinh khong tu dong duoc tai len cloud. Tren goi mien phi, co so du lieu nay va moi tai khoan/giao dich phat sinh co the mat khi dich vu ngu, khoi dong lai hoac deploy lai. Khong dung cho nghiep vu that va khong chuyen du lieu cu len hosting.
 
 ## Dashboard quan tri
 
 Trang `/admin` hien thi tong so hop, luot muon, luot tra, ty le tra, bieu do 7 ngay, va phan bo theo loai hop. Cac so lieu duoc tong hop tu giao dich SQLite. Uoc tinh nhua giam dung gia dinh 150 g cho moi luot tra, khong phai can do thuc te.
 
-## Nhận và trả hộp
+## Nhan va tra hop
 
-- Khách hàng chọn **Xác nhận nhận hộp** ở hộp sẵn sàng hoặc **Xác nhận trả hộp** ở lượt đang mượn. Hệ thống hiển thị hộp, loại hộp, tiền cọc và thao tác để xác nhận trước khi ghi giao dịch.
-- Kho chia thành hai dãy riêng: **30 hộp** mã `HP001`–`HP030` và **30 cốc** mã `COC001`–`COC030`. Dữ liệu cũ được giữ lại, chuẩn hóa và bổ sung khi server khởi động.
-- Trang quản trị hiển thị mã hộp, loại hộp và trạng thái; không tạo QR riêng cho từng hộp.
-- QR **trang khách** vẫn khả dụng trong mục quản trị; khi chạy trên Render, QR dùng URL HTTPS công khai.
-- Tiền cọc và hoàn cọc chỉ được ghi nhận trong SQLite, không thực hiện thanh toán tiền thật.
-- Với bản chạy cục bộ, server lắng nghe trên giao diện mạng để điện thoại cùng Wi‑Fi kết nối; Windows Firewall cần cho phép TCP cổng 8000 trên mạng Private. Không mở cổng này trên Public/Internet.
+- Khach hang chon **Xac nhan nhan hop** o hop san sang hoac **Xac nhan tra hop** o luot dang muon. He thong hien thi hop, loai hop, tien coc va thao tac de xac nhan truoc khi ghi giao dich.
+- Kho chia thanh hai day rieng: **30 hop** ma `HP001`-`HP030` va **30 coc** ma `COC001`-`COC030`. Du lieu cu duoc giu lai, chuan hoa va bo sung khi server khoi dong.
+- Trang quan tri hien thi ma hop, loai hop va trang thai; khong tao QR rieng cho tung hop.
+- QR **trang khach** van kha dung trong muc quan tri; khi chay tren Render, QR dung URL HTTPS cong khai.
+- Tien coc va hoan coc chi duoc ghi nhan trong SQLite, khong thuc hien thanh toan tien that.
+- Voi ban chay cuc bo, server lang nghe tren giao dien mang de dien thoai cung Wi-Fi ket noi; Windows Firewall can cho phep TCP cong 8000 tren mang Private. Khong mo cong nay tren Public/Internet.
 
 ## Cau truc tep
 
