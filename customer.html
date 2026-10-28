@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07583e">
+<title>GreenTray | Khách hàng</title>
+<style>
+:root{font:15px Arial,sans-serif;color:#18372a;background:#f4f8f5;--green:#08784f;--line:#e1ebe4;--muted:#6b8075}*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button{border:0;border-radius:8px;padding:10px 14px;background:var(--green);color:white;cursor:pointer}button:disabled{opacity:.55;cursor:wait}.secondary{background:#e8f4ec;color:#155d40}.wrap{max-width:1060px;margin:auto;padding:26px 18px}.bar{display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-size:23px;font-weight:bold;color:var(--green)}.muted{color:var(--muted)}.login,.panel,.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:20px}.login{max-width:420px;margin:9vh auto}.login h1{margin-top:0}.field{display:grid;gap:7px;margin:14px 0}.field input,.field select{padding:11px;border:1px solid #cad9cf;border-radius:8px}.hidden{display:none!important}.error{color:#a52c2c;min-height:20px}.auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:18px 0 8px}.auth-tab{background:#f0f5f1;color:#456253}.auth-tab.active{background:var(--green);color:white}.auth-submit{width:100%;margin-top:4px}.auth-note{font-size:12px;line-height:1.5}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}.stat small{color:var(--muted)}.stat strong{display:block;font-size:24px;margin-top:8px}.panel{margin:16px 0}h2{font-size:19px;margin:0 0 14px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}.card{border:1px solid var(--line);border-radius:12px;padding:16px}.card h3{margin:0 0 8px}.card p{color:var(--muted);margin:8px 0 14px}.tag{font-size:12px;color:#176044;background:#eaf7ee;border-radius:99px;padding:5px 9px}.tag.rented{background:#fff3dd;color:#7a5200}.tag.cleaning{background:#f0eafa;color:#654491}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:550px}td,th{text-align:left;padding:10px;border-bottom:1px solid var(--line)}th{font-size:13px;color:var(--muted)}.modal{position:fixed;inset:0;background:#07140dcc;display:grid;place-items:center;padding:16px;z-index:3}.dialog{width:min(560px,100%);background:white;border-radius:14px;padding:18px}.dialog-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.scan-confirm{margin-top:14px;padding:16px;background:#f4f8f5;border:1px solid var(--line);border-radius:12px}.scan-action{display:inline-block;padding:7px 10px;border-radius:7px;background:#dff2e4;color:#12643f;font-size:12px;font-weight:700;letter-spacing:.04em}.scan-detail{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}.scan-detail span{color:var(--muted)}.scan-detail strong{text-align:right}.scan-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}.scan-actions button{flex:1;min-width:150px}.scan-cancel{background:#e8f4ec;color:#155d40}.empty{color:var(--muted);padding:16px;text-align:center}@media(max-width:650px){.stats{grid-template-columns:1fr 1fr}.wrap{padding:16px 12px}.bar{align-items:flex-start}}
+</style>
+<style>
+html{min-height:100%;background:#eef5ef}
+body{min-height:100vh;background:radial-gradient(ellipse at 8% 3%,rgba(111,190,132,.2),transparent 34%),radial-gradient(ellipse at 96% 12%,rgba(195,222,174,.3),transparent 30%),linear-gradient(140deg,#f8fbf7 0%,#eef5ef 52%,#e7f0e9 100%);background-attachment:fixed}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <section id="login" class="login hidden">
+    <div class="brand">❧ GreenTray</div><h1 id="authTitle">Đăng nhập khách hàng</h1>
+    <p id="authDescription" class="muted">Đăng nhập để mượn/trả hộp và theo dõi điểm xanh của bạn.</p>
+    <div class="auth-tabs" role="tablist" aria-label="Tài khoản khách hàng">
+      <button id="loginTab" class="auth-tab active" type="button" role="tab" aria-selected="true">Đăng nhập</button>
+      <button id="registerTab" class="auth-tab" type="button" role="tab" aria-selected="false">Đăng ký</button>
+    </div>
+    <form id="loginForm">
+      <label id="nameField" class="field hidden">Họ và tên<input id="name" type="text" autocomplete="name" minlength="2" maxlength="80"></label>
+      <label class="field">Email<input id="email" type="email" autocomplete="username" required></label>
+      <label class="field">Mật khẩu<input id="password" type="password" autocomplete="current-password" minlength="8" maxlength="128" required></label>
+      <button id="loginButton" class="auth-submit">Đăng nhập</button><p id="loginError" class="error" role="alert"></p>
+    </form>
+    <p id="authNote" class="muted auth-note">Chưa có tài khoản? Chọn Đăng ký để tạo tài khoản khách hàng.</p>
+  </section>
+  <section id="app" class="hidden">
+    <header class="bar"><div><div class="brand">❧ GreenTray</div><div id="welcome" class="muted"></div></div><button id="logout" class="secondary">Đăng xuất</button></header>
+    <p class="muted">Chọn hộp hoặc cốc rồi xác nhận nhận hoặc trả ngay trên trang. Tiền cọc được ghi nhận nội bộ, không phải thanh toán thật.</p>
+    <section class="stats"><div class="stat"><small>Điểm xanh</small><strong id="points">0</strong></div><div class="stat"><small>Đang mượn</small><strong id="openRentals">0</strong></div><div class="stat"><small>Tiền cọc mỗi món</small><strong id="deposit">—</strong></div></section>
+    <section class="panel"><div class="bar"><h2>Nhận hộp hoặc cốc</h2><span class="muted">Chọn món sẵn sàng rồi xác nhận nhận.</span></div></section>
+    <section class="panel"><h2>Hộp sẵn sàng</h2><div id="boxes" class="grid"></div></section>
+    <section class="panel"><h2>Cốc sẵn sàng</h2><div id="cups" class="grid"></div></section>
+    <section class="panel"><h2>Lượt mượn của tôi</h2><div id="rentals" class="grid"></div></section>
+    <section class="panel"><h2>Lịch sử giao dịch</h2><div class="table-wrap"><table><thead><tr><th>Ngày</th><th>Loại</th><th>Tiền cọc</th><th>Điểm</th></tr></thead><tbody id="history"></tbody></table></div></section>
+  </section>
+</main>
+<section id="scanner" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="scannerTitle">
+  <div class="dialog"><div class="dialog-head"><h2 id="scannerTitle">Xác nhận giao dịch</h2><button id="closeScanner" class="secondary">Đóng</button></div>
+    <section id="scanConfirm" class="scan-confirm hidden" aria-live="polite">
+      <span id="scanAction" class="scan-action"></span>
+      <div class="scan-detail"><span>Mã hộp/cốc</span><strong id="scanBoxCode"></strong></div>
+      <div class="scan-detail"><span>Loại</span><strong id="scanBoxType"></strong></div>
+      <div class="scan-detail"><span>Trạng thái</span><strong id="scanBoxStatus"></strong></div>
+      <div class="scan-detail"><span id="scanAmountLabel">Tiền cọc</span><strong id="scanAmount"></strong></div>
+      <label id="conditionField" class="field hidden">Tình trạng hộp khi trả<select id="condition"><option value="good">Tốt, sẵn sàng cho lượt sau</option><option value="cleaning">Cần vệ sinh thêm</option></select></label>
+      <p id="scanError" class="error hidden" role="alert"></p>
+      <div class="scan-actions"><button id="confirmScan" type="button"></button><button id="rescan" class="scan-cancel" type="button">Hủy</button></div>
+    </section>
+  </div>
+</section>
+<script>
+const $=id=>document.getElementById(id);
+const money=value=>new Intl.NumberFormat('vi-VN').format(value)+'đ';
+const esc=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+async function api(path,options={}){const response=await fetch(path,{credentials:'same-origin',headers:{'Content-Type':'application/json'},...options});const data=await response.json();if(!response.ok)throw Error(data.error||'Không thể hoàn thành thao tác.');return data}
+let state=null,mode='receive',authMode='login',pendingAction=null;
+function showLogin(message=''){$('login').classList.remove('hidden');$('app').classList.add('hidden');$('loginError').textContent=message}
+function setAuthMode(nextMode){authMode=nextMode;const registering=authMode==='register';$('nameField').classList.toggle('hidden',!registering);$('name').required=registering;$('authTitle').textContent=registering?'Tạo tài khoản khách hàng':'Đăng nhập khách hàng';$('authDescription').textContent=registering?'Đăng ký tài khoản để nhận hộp, trả hộp và theo dõi điểm xanh.':'Đăng nhập để mượn/trả hộp và theo dõi điểm xanh của bạn.';$('loginButton').textContent=registering?'Tạo tài khoản':'Đăng nhập';$('password').autocomplete=registering?'new-password':'current-password';$('loginTab').classList.toggle('active',!registering);$('registerTab').classList.toggle('active',registering);$('loginTab').setAttribute('aria-selected',String(!registering));$('registerTab').setAttribute('aria-selected',String(registering));$('authNote').textContent=registering?'Bằng việc tạo tài khoản, bạn có thể sử dụng các dịch vụ GreenTray.':'Chưa có tài khoản? Chọn Đăng ký để tạo tài khoản khách hàng.';$('loginError').textContent=''}
+function showApp(user){$('login').classList.add('hidden');$('app').classList.remove('hidden');$('welcome').textContent='Xin chào, '+user.name}
+function render(){const user=state.user,open=state.rentals.filter(item=>item.status==='rented');$('points').textContent=user.points;$('openRentals').textContent=open.length;$('deposit').textContent=money(state.settings.deposit_amount);
+$('boxes').innerHTML=state.boxes.filter(box=>box.box_type==='Hộp'&&box.status==='available').map(box=>`<article class="card"><h3>${esc(box.code)}</h3><span class="tag">Hộp</span><p>Tiền cọc ${money(state.settings.deposit_amount)}</p><button data-receive="${esc(box.id)}">Xác nhận nhận hộp</button></article>`).join('')||'<div class="empty">Hiện không có hộp sẵn sàng.</div>';
+$('cups').innerHTML=state.boxes.filter(box=>box.box_type==='Cốc'&&box.status==='available').map(box=>`<article class="card"><h3>${esc(box.code)}</h3><span class="tag">Cốc</span><p>Tiền cọc ${money(state.settings.deposit_amount)}</p><button data-receive="${esc(box.id)}">Xác nhận nhận cốc</button></article>`).join('')||'<div class="empty">Hiện không có cốc sẵn sàng.</div>';
+$('rentals').innerHTML=open.map(item=>`<article class="card"><h3>${esc(item.code)}</h3><span class="tag rented">Đang mượn</span><p>${esc(item.box_type)} · Cọc ${money(item.deposit)}</p><button data-return="${esc(item.id)}">Xác nhận trả ${item.box_type==='Cốc'?'cốc':'hộp'}</button></article>`).join('')||'<div class="empty">Bạn chưa có hộp hoặc cốc đang mượn.</div>';
+$('history').innerHTML=state.transactions.map(item=>`<tr><td>${esc(item.created_at)}</td><td>${item.transaction_type==='rent'?'Nhận hộp':'Trả hộp'}</td><td>${money(item.amount)}</td><td>${item.green_points?'+'+item.green_points:'—'}</td></tr>`).join('')||'<tr><td colspan="4" class="empty">Chưa có giao dịch.</td></tr>';
+document.querySelectorAll('[data-receive]').forEach(button=>button.addEventListener('click',()=>openConfirmation('receive',button.dataset.receive)));
+document.querySelectorAll('[data-return]').forEach(button=>button.addEventListener('click',()=>openConfirmation('return',button.dataset.return)));
+}
+async function refresh(){state=await api('/api/customer/state');render()}
+function openConfirmation(nextMode,context){mode=nextMode;const box=mode==='receive'?state.boxes.find(item=>item.id===Number(context)):null;const rental=mode==='return'?state.rentals.find(item=>item.id===context&&item.status==='rented'):null;if(!box&&!rental){alert('Không tìm thấy hộp hoặc lượt mượn hiện tại. Hãy làm mới trang.');return}const boxType=box?.box_type||rental.box_type;const itemName=boxType==='Cốc'?'cốc':'hộp';pendingAction={mode,boxId:box?.id,rentalId:rental?.id,code:box?.code||rental.code,itemName};$('scannerTitle').textContent=mode==='receive'?'Xác nhận nhận '+itemName:'Xác nhận trả '+itemName;$('scanAction').textContent=mode==='receive'?'XÁC NHẬN NHẬN '+itemName.toLocaleUpperCase('vi-VN'):'XÁC NHẬN TRẢ '+itemName.toLocaleUpperCase('vi-VN');$('scanBoxCode').textContent=box?.code||rental.code;$('scanBoxType').textContent=boxType;$('scanBoxStatus').textContent=mode==='receive'?'Sẵn sàng nhận':'Đang được bạn mượn';$('scanAmountLabel').textContent=mode==='receive'?'Tiền cọc':'Tiền cọc được ghi nhận hoàn';$('scanAmount').textContent=money(mode==='receive'?state.settings.deposit_amount:rental.deposit);$('conditionField').classList.toggle('hidden',mode!=='return');$('condition').value='good';$('scanError').classList.add('hidden');$('confirmScan').textContent=mode==='receive'?'Xác nhận nhận '+itemName:'Xác nhận trả '+itemName;$('confirmScan').disabled=false;$('scanConfirm').classList.remove('hidden');$('scanner').classList.remove('hidden')}
+function stopScanner(){pendingAction=null;$('scanner').classList.add('hidden')}
+async function confirmScannedAction(){if(!pendingAction)return;const action=pendingAction;$('confirmScan').disabled=true;$('scanError').classList.add('hidden');try{if(action.mode==='receive'){await api('/api/rentals',{method:'POST',body:JSON.stringify({box_id:action.boxId})})}else{await api('/api/rentals/return',{method:'POST',body:JSON.stringify({rental_id:action.rentalId,condition:$('condition').value})})}stopScanner();await refresh();alert(action.mode==='receive'?'Đã nhận '+action.itemName+' '+action.code+'.':'Đã trả '+action.itemName+' '+action.code+' và cộng 10 điểm xanh.')}catch(error){$('scanError').textContent=error.message;$('scanError').classList.remove('hidden')}finally{$('confirmScan').disabled=false}}
+$('confirmScan').addEventListener('click',confirmScannedAction);
+$('rescan').addEventListener('click',stopScanner);
+$('closeScanner').addEventListener('click',stopScanner);
+$('scanner').addEventListener('click',event=>{if(event.target===$('scanner'))stopScanner()});
+$('loginTab').addEventListener('click',()=>setAuthMode('login'));
+$('registerTab').addEventListener('click',()=>setAuthMode('register'));
+$('loginForm').addEventListener('submit',async event=>{event.preventDefault();$('loginButton').disabled=true;$('loginError').textContent='';try{const registering=authMode==='register';const result=await api(registering?'/api/auth/register':'/api/auth/login',{method:'POST',body:JSON.stringify(registering?{name:$('name').value,email:$('email').value,password:$('password').value}:{email:$('email').value,password:$('password').value})});if(result.user.role!=='customer'){showLogin('Đây là tài khoản quản trị, hãy đăng nhập ở trang quản trị.');return}showApp(result.user);await refresh()}catch(error){$('loginError').textContent=error.message}finally{$('loginButton').disabled=false}});
+$('logout').addEventListener('click',async()=>{stopScanner();await api('/api/auth/logout',{method:'POST',body:JSON.stringify({role:'customer'})});showLogin()});
+async function start(){try{const {user}=await api('/api/auth/me?role=customer');if(!user){showLogin();return}showApp(user);await refresh()}catch(error){showLogin(error.message)}}
+start();
+</script>
+</body>
+</html>

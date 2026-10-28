@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: greentray
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server.py
+    healthCheckPath: /health
+    disk:
+      name: greentray-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: GREENTRAY_ENV
+        value: production
+      - key: GREENTRAY_DATABASE
+        value: /var/data/greentray.db
+      - key: ADMIN_EMAIL
+        value: admin@greentray.local
+      - key: ADMIN_NAME
+        value: Quản trị viên
+      - key: ADMIN_INITIAL_PASSWORD
+        sync: false

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07583e">
+<title>GreenTray | Quản trị</title>
+<style>
+:root{font:14px Arial,sans-serif;color:#173b2d;background:#f4f8f5;--green:#08784f;--deep:#064932;--line:#e4ece6;--muted:#75877d;--mint:#eaf6ed}
+*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button{border:0;border-radius:8px;padding:10px 14px;background:var(--green);color:white;cursor:pointer}button:disabled{opacity:.55;cursor:wait}.hidden{display:none!important}.layout{min-height:100vh}.sidebar{position:fixed;inset:0 auto 0 0;width:224px;background:linear-gradient(180deg,#07533a,#063d2e);color:#eaf6ed;padding:20px 14px;display:flex;flex-direction:column;z-index:2}.brand{display:flex;align-items:center;gap:8px;font-size:21px;font-weight:700;color:white;padding:2px 8px 26px}.brand-mark{display:grid;place-items:center;width:27px;height:27px;background:#a9df76;border-radius:8px;color:#07533a;font-size:17px}.nav-label{padding:7px 10px 9px;color:#a8c9b5;font-size:11px;text-transform:uppercase;letter-spacing:.11em}.nav{display:grid;gap:5px}.nav button{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:transparent;color:#d4e6d9;padding:11px 10px;font-size:13px;border:1px solid transparent}.nav button:hover,.nav button.active{background:#0d7954;color:white;border-color:#31936e}.nav-icon{width:18px;text-align:center;font-size:15px}.sidebar-note{margin-top:auto;padding:12px 10px;color:#c1d9ca;font-size:11px;line-height:1.55;border-top:1px solid #ffffff22}.main{margin-left:224px;padding:28px clamp(18px,3vw,42px);max-width:1600px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:25px}.eyebrow{font-size:12px;color:var(--muted);margin-bottom:5px}.page-title{font-size:24px;margin:0;font-weight:700;letter-spacing:-.02em}.account{display:flex;align-items:center;gap:12px}.avatar{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:#dff1e3;color:#176447;font-weight:700}.account-name{font-weight:600}.account-role{font-size:12px;color:var(--muted);margin-top:3px}.logout{background:white;border:1px solid var(--line);color:#355647}.intro{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin:0 0 17px}.intro h2{font-size:18px;margin:0 0 5px}.intro p{margin:0;color:var(--muted);font-size:13px}.refresh{background:white;color:#176447;border:1px solid var(--line)}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:15px 0}.stat,.panel,.impact{background:white;border:1px solid var(--line);border-radius:13px}.stat{padding:15px 16px;min-height:105px;display:flex;align-items:center;gap:13px}.stat-icon{display:grid;place-items:center;width:39px;height:39px;flex:none;border-radius:11px;background:#e8f5eb;color:#11764e;font-size:19px}.stat small{display:block;color:#718278;font-size:12px}.stat strong{display:block;font-size:24px;margin-top:8px;line-height:1}.stat-unit{font-size:12px;color:var(--muted);font-weight:400}.charts{display:grid;grid-template-columns:1.25fr 1fr;gap:13px;margin:13px 0}.panel{padding:16px;min-width:0}.panel-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:13px}.panel h3{margin:0;font-size:14px}.panel-hint{margin-top:5px;color:var(--muted);font-size:11px}.section h4{margin:20px 0 9px;color:#355647;font-size:13px}.range{font-size:11px;color:#6b7f73;background:#f1f6f2;border-radius:6px;padding:6px 8px}.bar-chart{height:166px;position:relative;display:flex;align-items:stretch;gap:7px;padding:8px 2px 0;border-bottom:1px solid #e8eee9}.chart-empty{position:absolute;inset:30px 0 25px;display:grid;place-items:center;color:#839188;font-size:12px;pointer-events:none}.bar-day{flex:1;min-width:0;display:grid;grid-template-rows:1fr 17px;gap:7px;text-align:center;color:#839188;font-size:10px}.bar-track{height:100%;display:flex;align-items:flex-end;justify-content:center}.bar-fill{width:min(17px,72%);height:var(--height);min-height:3px;border-radius:4px 4px 0 0;background:#168757;transition:height .25s}.bar-value{font-size:9px;color:#61776a;margin-bottom:3px}.types-body{display:flex;align-items:center;justify-content:center;gap:24px;min-height:156px}.donut{width:130px;height:130px;border-radius:50%;position:relative;background:conic-gradient(#188252 0deg 360deg)}.donut:after{content:"";position:absolute;inset:29px;border-radius:50%;background:white}.donut-center{position:absolute;inset:0;z-index:1;display:grid;place-content:center;text-align:center}.donut-center strong{font-size:20px}.donut-center span{font-size:10px;color:var(--muted);margin-top:2px}.legend{display:grid;gap:12px;min-width:100px}.legend-row{display:grid;grid-template-columns:9px 1fr auto;gap:7px;align-items:center;font-size:11px}.legend-dot{width:9px;height:9px;border-radius:50%;background:var(--dot)}.legend-name{color:#607469}.legend-value{font-weight:600}.impact{display:grid;grid-template-columns:1fr 1fr;margin:13px 0;overflow:hidden}.impact-item{display:flex;align-items:center;gap:12px;padding:14px 17px}.impact-item+.impact-item{border-left:1px solid var(--line)}.leaf{font-size:26px}.impact strong{font-size:20px}.impact p{margin:4px 0 0;font-size:11px;color:var(--muted)}.section{scroll-margin-top:18px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:680px}th,td{text-align:left;padding:10px 11px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--muted);font-size:11px;font-weight:600}td{font-size:12px}.admin-box-qr{display:block;width:64px;height:64px;padding:2px;background:#fff;border:1px solid var(--line);border-radius:5px}.tag{padding:5px 9px;border-radius:99px;background:#eaf7ee;color:#176044;font-size:11px}.tag.rented{background:#fff3dd;color:#7a5200}.tag.cleaning{background:#f0eafa;color:#654491}.empty{color:var(--muted);padding:20px;text-align:center}.settings{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#455f51;font-size:13px}.setting-value{font-weight:700;color:#173b2d}.qr-modal{position:fixed;inset:0;z-index:5;display:grid;place-items:center;padding:18px;background:#10231bb8}.qr-dialog{width:min(400px,100%);background:white;border:1px solid var(--line);border-radius:16px;padding:22px;text-align:center;box-shadow:0 20px 70px #00190d40}.qr-dialog h2{margin:0 0 7px;font-size:20px}.qr-dialog p{color:var(--muted);font-size:13px;line-height:1.5}.qr-image{width:min(270px,75vw);height:auto;display:block;margin:10px auto;background:#fff}.qr-url{display:block;color:#176447;font-size:12px;overflow-wrap:anywhere}.qr-actions{display:flex;justify-content:center;gap:10px;margin-top:17px}.qr-print{background:var(--green)}.qr-close{background:#e8f4ec;color:#155d40}.login{max-width:420px;margin:10vh auto;background:white;border:1px solid var(--line);border-radius:14px;padding:24px}.login h1{margin-top:10px}.sub{color:var(--muted);margin:7px 0 22px}.field{display:grid;gap:7px;margin:14px 0}.field input{border:1px solid #cad9cf;border-radius:8px;padding:11px;width:100%}.notice{color:#a52c2c;min-height:20px}
+@media print{body>*{visibility:hidden!important}#customerQrModal,#customerQrModal *{visibility:visible!important}.qr-modal{position:absolute;inset:0;display:grid!important;padding:0;background:#fff}.qr-dialog{width:100%;border:0;box-shadow:none;padding:30px}.qr-actions{display:none!important}.qr-image{width:300px;height:300px}.qr-url{color:#111}}
+@media(max-width:1050px){.sidebar{width:190px}.main{margin-left:190px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.charts{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){.sidebar{position:sticky;top:0;width:100%;height:auto;padding:10px 12px}.brand{padding:0 4px 9px}.sidebar-note,.nav-label{display:none}.nav{display:flex;overflow-x:auto;gap:4px}.nav button{width:auto;flex:none;padding:9px 10px;font-size:12px}.nav-icon{display:none}.main{margin-left:0;padding:19px 13px}.topbar{margin-bottom:20px}.page-title{font-size:20px}.account-name{font-size:12px}.charts{grid-template-columns:1fr}.types-body{min-height:145px}.stat{padding:12px;min-height:91px}.stat strong{font-size:21px}.impact-item{padding:12px}.intro{align-items:flex-start}.logout{padding:9px 10px}}
+</style>
+<style>
+html{min-height:100%;background:#eef5ef}
+body{min-height:100vh;background:radial-gradient(ellipse at 88% 4%,rgba(125,194,139,.18),transparent 31%),radial-gradient(ellipse at 28% 100%,rgba(198,223,181,.22),transparent 34%),linear-gradient(135deg,#f7faf7 0%,#eef5ef 55%,#e8f1ea 100%);background-attachment:fixed}
+</style>
+</head>
+<body>
+<section id="login" class="login hidden">
+  <div class="brand" style="color:#08784f;padding:0"><span class="brand-mark">❧</span> GreenTray</div>
+  <h1>Đăng nhập quản trị</h1>
+  <p class="sub">Dành riêng cho tài khoản quản trị viên.</p>
+  <form id="loginForm">
+    <label class="field">Email<input id="email" type="email" value="admin@greentray.local" autocomplete="username" required></label>
+    <label class="field">Mật khẩu<input id="password" type="password" autocomplete="current-password" required></label>
+    <button id="loginButton" type="submit">Đăng nhập</button>
+    <p id="loginError" class="notice" role="alert"></p>
+  </form>
+</section>
+<div id="app" class="layout hidden">
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">❧</span> GreenTray</div>
+    <div class="nav-label">Không gian quản lý</div>
+    <nav class="nav" aria-label="Điều hướng quản trị">
+      <button class="active" data-target="dashboard"><span class="nav-icon">▦</span> Dashboard</button>
+      <button data-target="dashboard"><span class="nav-icon">◉</span> Tổng quan</button>
+      <button data-target="usage"><span class="nav-icon">◷</span> Lượt sử dụng</button>
+      <button data-target="inventory"><span class="nav-icon">▣</span> Hộp và cốc</button>
+      <button data-target="returns"><span class="nav-icon">♡</span> Món đã trả</button>
+      <button data-target="statistics"><span class="nav-icon">▥</span> Thống kê</button>
+      <button data-target="settings"><span class="nav-icon">⚙</span> Cài đặt</button>
+    </nav>
+    <div class="sidebar-note">Quản lý hộp tái sử dụng<br>Dữ liệu SQLite trên máy này</div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <div><div class="eyebrow">GreenTray / Quản trị</div><h1 class="page-title" id="pageTitle">Dashboard</h1></div>
+      <div class="account"><div class="avatar">GT</div><div><div class="account-name" id="adminName">Quản trị viên</div><div class="account-role">Quản trị viên</div></div><button id="showCustomerQr" class="logout">QR trang khách</button><button id="logout" class="logout">Đăng xuất</button></div>
+    </header>
+    <section id="dashboard" class="section">
+      <div class="intro"><div><h2>Tổng quan hoạt động</h2><p>Theo dõi vòng đời hộp và cốc tái sử dụng của GreenTray.</p></div><button id="refresh" class="refresh">↻ Làm mới</button></div>
+      <section class="stats" aria-label="Chỉ số tổng quan">
+        <article class="stat"><span class="stat-icon">▣</span><div><small>Tổng hộp và cốc</small><strong id="total">—</strong></div></article>
+        <article class="stat"><span class="stat-icon">♻</span><div><small>Lượt sử dụng</small><strong id="usageCount">—</strong></div></article>
+        <article class="stat"><span class="stat-icon">♡</span><div><small>Lượt trả</small><strong id="returnCount">—</strong></div></article>
+        <article class="stat"><span class="stat-icon">◉</span><div><small>Tỷ lệ hoàn trả</small><strong id="returnRate">—</strong></div></article>
+      </section>
+      <section id="statistics" class="charts">
+        <article class="panel">
+          <div class="panel-head"><div><h3>Lượt sử dụng theo ngày</h3><div class="panel-hint">7 ngày gần nhất · theo dữ liệu mượn hộp</div></div><span class="range">7 ngày</span></div>
+          <div id="dailyChart" class="bar-chart" role="img" aria-label="Biểu đồ lượt sử dụng theo ngày"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><div><h3>Loại đồ dùng được chọn nhiều nhất</h3><div class="panel-hint">Phân bổ theo lượt mượn</div></div></div>
+          <div class="types-body"><div id="donut" class="donut" role="img" aria-label="Biểu đồ phân bổ lượt mượn theo loại đồ dùng"><div class="donut-center"><strong id="typeTotal">0</strong><span>lượt dùng</span></div></div><div id="typeLegend" class="legend"></div></div>
+        </article>
+      </section>
+      <section class="impact" aria-label="Tác động môi trường ước tính">
+        <div class="impact-item"><span class="leaf">🌿</span><div><strong id="reuseCount">0</strong><p>Món đã được dùng lại</p></div></div>
+        <div class="impact-item"><span class="leaf">♻️</span><div><strong><span id="plasticSaved">0</span> kg</strong><p>Nhựa giảm ước tính · 0,15 kg mỗi lượt trả</p></div></div>
+      </section>
+    </section>
+    <section id="inventory" class="panel section">
+      <div class="panel-head"><div><h3>Hộp và cốc đang lưu thông</h3><div class="panel-hint">Hai dãy mã riêng, mỗi dãy có 30 món</div></div></div>
+      <h4>Hộp — 30 mã riêng (HP001–HP030)</h4>
+      <div class="table-wrap"><table><thead><tr><th>Mã hộp</th><th>Loại</th><th>Trạng thái</th></tr></thead><tbody id="boxInventory"></tbody></table></div>
+      <h4>Cốc — 30 mã riêng (COC001–COC030)</h4>
+      <div class="table-wrap"><table><thead><tr><th>Mã cốc</th><th>Loại</th><th>Trạng thái</th></tr></thead><tbody id="cupInventory"></tbody></table></div>
+    </section>
+    <section id="usage" class="panel section">
+      <div class="panel-head"><div><h3>Lượt sử dụng gần đây</h3><div class="panel-hint">Lịch sử mượn và trả</div></div></div>
+      <div class="table-wrap"><table><thead><tr><th>Mã hộp</th><th>Khách hàng</th><th>Email</th><th>Trạng thái</th><th>Ngày mượn</th></tr></thead><tbody id="rentals"></tbody></table></div>
+    </section>
+    <section id="returns" class="panel section">
+      <div class="panel-head"><div><h3>Hộp và cốc đã trả</h3><div class="panel-hint">Các lượt trả được ghi nhận trong hệ thống</div></div></div>
+      <div class="table-wrap"><table><thead><tr><th>Mã hộp</th><th>Khách hàng</th><th>Email</th><th>Tình trạng</th><th>Ngày trả</th></tr></thead><tbody id="returnedRentals"></tbody></table></div>
+    </section>
+    <section id="settings" class="panel section">
+      <div class="panel-head"><div><h3>Cài đặt vận hành</h3><div class="panel-hint">Thông tin đang áp dụng cho hệ thống</div></div></div>
+      <div class="settings"><span>Tiền cọc mặc định mỗi hộp</span><span id="depositSetting" class="setting-value">—</span></div>
+      <p class="panel-hint">Tiền cọc chỉ được ghi nhận nội bộ trong SQLite, chưa kết nối thanh toán thật.</p>
+    </section>
+  </main>
+</div>
+<section id="customerQrModal" class="qr-modal hidden" role="dialog" aria-modal="true" aria-labelledby="customerQrTitle">
+  <div class="qr-dialog">
+    <h2 id="customerQrTitle">QR mở trang khách hàng</h2>
+    <p>Quét mã bằng điện thoại để mở trang khách hàng. Bản cục bộ cần dùng cùng Wi‑Fi với máy chạy GreenTray.</p>
+    <img class="qr-image" src="/api/page-qr/customer.svg" alt="Mã QR mở trang khách hàng GreenTray">
+    <code class="qr-url">http://127.0.0.1:8000/</code>
+    <div class="qr-actions"><button id="printCustomerQr" class="qr-print">In mã QR</button><button id="closeCustomerQr" class="qr-close">Đóng</button></div>
+  </div>
+</section>
+<script>
+const $=id=>document.getElementById(id);
+const money=value=>new Intl.NumberFormat('vi-VN').format(value)+'đ';
+const escapeHtml=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+async function api(path,options={}){const response=await fetch(path,{credentials:'same-origin',headers:{'Content-Type':'application/json'},...options});const data=await response.json();if(!response.ok)throw Error(data.error||'Không thể hoàn thành thao tác.');return data}
+function showLogin(message=''){$('login').classList.remove('hidden');$('app').classList.add('hidden');$('loginError').textContent=message}
+function showApp(user){$('login').classList.add('hidden');$('app').classList.remove('hidden');$('adminName').textContent=user.name}
+const statusNames={available:'Sẵn sàng',rented:'Đang được thuê',cleaning:'Đang vệ sinh'};
+const palette=['#188252','#56ad71','#8bc878','#b5d995','#e2c76f','#77a9a1'];
+function renderDailyChart(entries){const counts=new Map(entries.map(item=>[item.day,item.count]));const days=Array.from({length:7},(_,index)=>{const date=new Date();date.setUTCHours(0,0,0,0);date.setUTCDate(date.getUTCDate()-(6-index));const iso=date.getUTCFullYear()+'-'+String(date.getUTCMonth()+1).padStart(2,'0')+'-'+String(date.getUTCDate()).padStart(2,'0');return{day:iso,label:new Intl.DateTimeFormat('vi-VN',{weekday:'short',timeZone:'UTC'}).format(date),count:counts.get(iso)||0}});const max=Math.max(1,...days.map(item=>item.count));const hasUsage=days.some(item=>item.count>0);$('dailyChart').innerHTML=days.map(item=>`<div class="bar-day" aria-label="${item.label}: ${item.count} lượt"><div class="bar-track"><div class="bar-fill" style="--height:${item.count?Math.max(9,item.count/max*100):2}%"><span class="bar-value">${item.count||''}</span></div></div><span>${item.label}</span></div>`).join('')+(hasUsage?'':'<div class="chart-empty">Chưa có lượt sử dụng trong 7 ngày qua</div>')}
+function renderTypes(entries){const used=entries.filter(item=>item.count>0);const total=used.reduce((sum,item)=>sum+item.count,0);$('typeTotal').textContent=total;$('typeLegend').innerHTML=used.map((item,index)=>`<div class="legend-row"><span class="legend-dot" style="--dot:${palette[index%palette.length]}"></span><span class="legend-name">${escapeHtml(item.label)}</span><span class="legend-value">${Math.round(item.count/total*100)}%</span></div>`).join('')||'<span class="panel-hint">Chưa có lượt mượn</span>';let angle=0;const segments=used.map((item,index)=>{const start=angle;angle+=item.count/total*360;return`${palette[index%palette.length]} ${start}deg ${angle}deg`});$('donut').style.background=segments.length?`conic-gradient(${segments.join(',')})`:'#e8f0ea'}
+function renderDate(value){if(!value)return'—';const date=new Date(value.replace(' ','T')+'Z');return Number.isNaN(date.getTime())?escapeHtml(value):new Intl.DateTimeFormat('vi-VN',{dateStyle:'short',timeStyle:'short'}).format(date)}
+async function refresh(){const data=await api('/api/admin/state');const stats=data.stats;$('total').textContent=stats.total;$('usageCount').textContent=stats.usage_count;$('returnCount').textContent=stats.return_count;$('returnRate').textContent=stats.usage_count?stats.return_rate.toLocaleString('vi-VN')+'%':'0%';$('reuseCount').textContent=stats.return_count;$('plasticSaved').textContent=stats.plastic_saved_kg.toLocaleString('vi-VN',{minimumFractionDigits:1,maximumFractionDigits:1});$('depositSetting').textContent=money(data.deposit_amount);renderDailyChart(data.daily_usage);renderTypes(data.usage_by_type);
+$('boxInventory').innerHTML=data.boxes.filter(box=>box.box_type==='Hộp').map(box=>`<tr><td><strong>${escapeHtml(box.code)}</strong></td><td>Hộp</td><td><span class="tag ${box.status}">${statusNames[box.status]||box.status}</span></td></tr>`).join('')||'<tr><td class="empty" colspan="3">Chưa có hộp.</td></tr>';
+$('cupInventory').innerHTML=data.boxes.filter(box=>box.box_type==='Cốc').map(box=>`<tr><td><strong>${escapeHtml(box.code)}</strong></td><td>Cốc</td><td><span class="tag ${box.status}">${statusNames[box.status]||box.status}</span></td></tr>`).join('')||'<tr><td class="empty" colspan="3">Chưa có cốc.</td></tr>';
+$('rentals').innerHTML=data.rentals.map(rental=>`<tr><td><strong>${escapeHtml(rental.code)}</strong></td><td>${escapeHtml(rental.customer_name)}</td><td>${escapeHtml(rental.email)}</td><td><span class="tag ${rental.status}">${rental.status==='rented'?'Đang thuê':'Đã trả'}</span></td><td>${renderDate(rental.rented_at)}</td></tr>`).join('')||'<tr><td class="empty" colspan="5">Chưa có lượt sử dụng.</td></tr>';
+const returned=data.rentals.filter(rental=>rental.status==='returned');$('returnedRentals').innerHTML=returned.map(rental=>`<tr><td><strong>${escapeHtml(rental.code)}</strong></td><td>${escapeHtml(rental.customer_name)}</td><td>${escapeHtml(rental.email)}</td><td><span class="tag">${rental.condition==='cleaning'?'Cần vệ sinh':'Tốt'}</span></td><td>${renderDate(rental.returned_at)}</td></tr>`).join('')||'<tr><td class="empty" colspan="5">Chưa có hộp trả.</td></tr>'}
+async function start(){try{const session=await api('/api/auth/me?role=admin');if(!session.user){showLogin();return}showApp(session.user);await refresh()}catch(error){showLogin(error.message)}}
+$('loginForm').addEventListener('submit',async event=>{event.preventDefault();$('loginButton').disabled=true;$('loginError').textContent='';try{const result=await api('/api/auth/login',{method:'POST',body:JSON.stringify({email:$('email').value,password:$('password').value})});if(result.user.role!=='admin'){showLogin('Tài khoản này không phải quản trị viên.');return}showApp(result.user);await refresh()}catch(error){$('loginError').textContent=error.message}finally{$('loginButton').disabled=false}});
+$('logout').addEventListener('click',async()=>{await api('/api/auth/logout',{method:'POST',body:JSON.stringify({role:'admin'})});showLogin()});
+$('refresh').addEventListener('click',()=>refresh().catch(error=>alert(error.message)));
+$('showCustomerQr').addEventListener('click',async()=>{const modal=$('customerQrModal'),image=modal.querySelector('.qr-image'),url=modal.querySelector('.qr-url');modal.classList.remove('hidden');url.textContent='Đang lấy địa chỉ truy cập…';try{const result=await api('/api/page-url/customer');url.textContent=result.url;image.src='/api/page-qr/customer.svg?time='+Date.now()}catch(error){url.textContent=error.message;image.removeAttribute('src')}});
+$('closeCustomerQr').addEventListener('click',()=>{$('customerQrModal').classList.add('hidden')});
+$('customerQrModal').addEventListener('click',event=>{if(event.target===$('customerQrModal'))$('customerQrModal').classList.add('hidden')});
+$('printCustomerQr').addEventListener('click',()=>window.print());
+document.addEventListener('keydown',event=>{if(event.key==='Escape')$('customerQrModal').classList.add('hidden')});
+document.querySelectorAll('.nav button').forEach(button=>button.addEventListener('click',()=>{document.querySelector('.nav button.active')?.classList.remove('active');button.classList.add('active');const target=$(button.dataset.target);target.scrollIntoView({behavior:'smooth',block:'start'});$('pageTitle').textContent=button.textContent.trim()}));
+start();
+</script>
+</body>
+</html>

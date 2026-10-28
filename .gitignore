@@ -1,0 +1,6 @@
+greentray.db
+greentray.db-shm
+greentray.db-wal
+.env
+__pycache__/
+*.py[cod]
